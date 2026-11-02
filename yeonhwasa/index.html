@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>연화사 — 함께 절하고 명상하는 온라인 사찰</title>
+<meta name="description" content="언제든 들어가 절하고, 염주를 돌리고, 숨을 고르는 3D 온라인 법당. 삼배와 108배, 염주 108알, 명상 3·5·10분, 연등과 오늘의 법문. 같은 시각 들어온 사람들과 함께 참배합니다. Android 출시 준비 중.">
+<meta property="og:title" content="연화사 — 함께 절하고 명상하는 온라인 사찰">
+<meta property="og:description" content="언제든 들어가 절하고, 염주를 돌리고, 숨을 고르는 3D 온라인 법당. 계정 없이, 혼자서도 함께도.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kakimind.github.io/assets/yeonhwasa.png">
+<meta property="og:url" content="https://kakimind.github.io/yeonhwasa/">
+<link rel="icon" href="icon.png">
+<link rel="canonical" href="https://kakimind.github.io/yeonhwasa/">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --paper: #fafaf6; --paper-raised: #ffffff; --ink: #101012;
+    --ink-soft: #55534c; --ink-faint: #94918a; --rule: #d8d5cb;
+    --spot: #2a7d5f; --focus: #101012;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #121210; --paper-raised: #1a1a17; --ink: #f2f0e8;
+      --ink-soft: #b5b1a5; --ink-faint: #706d63; --rule: #38362f;
+      --spot: #5bb48d; --focus: #f2f0e8;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #121210; --paper-raised: #1a1a17; --ink: #f2f0e8;
+    --ink-soft: #b5b1a5; --ink-faint: #706d63; --rule: #38362f;
+    --spot: #5bb48d; --focus: #f2f0e8;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 17px; line-height: 1.65; -webkit-font-smoothing: antialiased;
+  }
+  .masthead-font { font-family: "Big Shoulders Display", "Archivo Black", sans-serif; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; }
+
+  .skip {
+    position: absolute; left: -9999px; top: 0; z-index: 50;
+    background: var(--ink); color: var(--paper); padding: 0.7rem 1.1rem;
+    font-family: "Space Mono"; font-size: 0.78rem;
+  }
+  .skip:focus { left: 0.8rem; top: 0.8rem; }
+
+  .page { max-width: 76rem; margin: 0 auto; padding: 0 1.8rem; }
+
+  .runhead {
+    position: fixed; top: 0; bottom: 0; left: 0.9rem; z-index: 20;
+    display: flex; align-items: center; pointer-events: none;
+  }
+  .runhead span {
+    display: inline-block; writing-mode: vertical-rl;
+    font-family: "Space Mono"; font-size: 0.72rem; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-faint);
+  }
+  @media (max-width: 980px) { .runhead { display: none; } }
+
+  .backbar {
+    position: fixed; top: 1.2rem; right: 1.6rem; z-index: 20;
+    font-family: "Space Mono"; font-size: 0.75rem; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--ink-soft);
+    border-bottom: 1px solid var(--ink-faint); padding-bottom: 0.2rem;
+  }
+  .backbar:hover { color: var(--ink); border-color: var(--ink); }
+
+  .opener {
+    padding: 6rem 0 3rem; border-bottom: 3px solid var(--ink);
+    display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: end;
+  }
+  .opener .kicker {
+    font-family: "Space Mono"; font-size: 0.78rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--spot); display: block; margin-bottom: 1.2rem;
+  }
+  .opener h1 {
+    font-family: "Big Shoulders Display"; font-weight: 900;
+    font-size: clamp(2.4rem, 6.4vw, 4.6rem); line-height: 0.95; margin: 0; text-transform: uppercase;
+  }
+  .opener h1 .ko {
+    font-family: "Source Serif 4", Georgia, serif; font-weight: 600; display: block;
+    font-size: 0.42em; letter-spacing: 0.24em; text-transform: none;
+    color: var(--ink-soft); margin-top: 0.7rem;
+  }
+  .opener .dek { font-style: italic; font-size: 1.2rem; color: var(--ink-soft); margin: 1.4rem 0 0; max-width: 32rem; }
+  .opener .byline { font-family: "Space Mono"; font-size: 0.78rem; color: var(--ink-faint); text-align: right; line-height: 1.9; }
+  @media (max-width: 760px) { .opener { grid-template-columns: 1fr; } .opener .byline { text-align: left; } }
+
+  .plate-row {
+    padding: 3rem 0; display: grid; grid-template-columns: 1fr 1.3fr;
+    gap: 3rem; align-items: center; border-bottom: 1px solid var(--rule);
+  }
+  .plate { position: relative; border: 1px solid var(--rule); background: var(--paper-raised); padding: 1.6rem; margin: 0; }
+  .plate .shot { width: 100%; height: auto; border-radius: 4px; display: block; }
+  .plate .cap { margin-top: 1rem; font-family: "Space Mono"; font-size: 0.72rem; color: var(--ink-faint); display: flex; justify-content: space-between; gap: 1rem; }
+  .lede p.body:first-of-type::first-letter {
+    font-family: "Big Shoulders Display"; font-weight: 900; font-size: 3.4rem;
+    line-height: 0.8; float: left; padding: 0.05em 0.12em 0 0; color: var(--spot);
+  }
+  .lede p.body { margin: 0 0 1.1rem; max-width: 34rem; }
+
+  .factbox { border-top: 2px solid var(--ink); padding-top: 1rem; margin-top: 1.4rem; max-width: 30rem; }
+  .factbox dl { display: flex; flex-wrap: wrap; gap: 0 1.8rem; margin: 0; }
+  .factbox dt { font-family: "Space Mono"; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin: 0; }
+  .factbox dd { font-family: "Space Mono"; font-size: 0.85rem; margin: 0.1rem 0 0.8rem; color: var(--ink); }
+
+  .playbadge {
+    display: inline-flex; align-items: center; gap: 0.6em; margin-top: 1.6rem; padding: 0.8rem 1.3rem;
+    background: var(--ink); color: var(--paper); font-family: "Space Mono"; font-size: 0.82rem;
+    letter-spacing: 0.04em; text-transform: uppercase; transition: background-color 0.2s ease;
+  }
+  .playbadge:hover { background: var(--spot); color: #fff; }
+  .playbadge.pending { background: none; color: var(--ink-soft); border: 1px dashed var(--ink-faint); }
+  .badge-note { font-family: "Space Mono"; font-size: 0.72rem; color: var(--ink-faint); margin: 0.7rem 0 0; }
+
+  @media (max-width: 760px) { .plate-row { grid-template-columns: 1fr; } }
+
+  .pull-section { padding: 3.5rem 0; border-bottom: 1px solid var(--rule); }
+  .pull-section .label { font-family: "Space Mono"; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.8rem; }
+  .feature-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+  .feature-list li { display: grid; grid-template-columns: 4.5rem 1fr; gap: 1.4rem; padding: 1.4rem 0; border-top: 1px solid var(--rule); }
+  .feature-list li:first-child { border-top: none; }
+  .feature-list .fnum { font-family: "Big Shoulders Display"; font-weight: 900; font-size: 1.8rem; color: var(--spot); opacity: 0.6; }
+  .feature-list h3 { font-family: "Big Shoulders Display"; font-weight: 700; text-transform: uppercase; font-size: 1.15rem; margin: 0 0 0.35rem; }
+  .feature-list p { margin: 0; color: var(--ink-soft); max-width: 36rem; }
+
+  .figures { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 2px solid var(--ink); margin: 0; }
+  .figures div { padding: 1.4rem 1.4rem 1.6rem; border-left: 1px solid var(--rule); }
+  .figures div:first-child { border-left: none; padding-left: 0; }
+  .figures dt { font-family: "Space Mono"; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 0.5rem; }
+  .figures dd { margin: 0; font-family: "Big Shoulders Display"; font-weight: 900; font-size: 2.6rem; line-height: 1; }
+  .figures dd span { font-family: "Space Mono"; font-weight: 400; font-size: 0.78rem; color: var(--ink-soft); display: block; margin-top: 0.5rem; letter-spacing: 0.02em; line-height: 1.5; }
+  @media (max-width: 760px) {
+    .figures { grid-template-columns: repeat(2, 1fr); }
+    .figures div:nth-child(odd) { border-left: none; padding-left: 0; }
+  }
+
+  .note-row { display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem; align-items: start; }
+  .note-row .standfirst { font-style: italic; font-size: 1.1rem; color: var(--ink-soft); margin: 0; max-width: 24rem; }
+  .note-row .body { margin: 0 0 1.1rem; max-width: 36rem; }
+  .note-row .body:last-of-type { margin-bottom: 0; color: var(--ink-soft); }
+  @media (max-width: 760px) { .note-row { grid-template-columns: 1fr; gap: 1.8rem; } }
+
+  .ladder { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; border-top: 2px solid var(--ink); }
+  .ladder li { padding: 1.2rem 1rem 1.4rem; border-left: 1px solid var(--rule); }
+  .ladder li:first-child { border-left: none; padding-left: 0; }
+  .ladder .lname { font-family: "Big Shoulders Display"; font-weight: 900; font-size: 1.5rem; line-height: 1; display: block; }
+  .ladder .ldays { font-family: "Space Mono"; font-size: 0.72rem; color: var(--spot); display: block; margin-top: 0.5rem; }
+  @media (max-width: 760px) {
+    .ladder { grid-template-columns: repeat(3, 1fr); }
+    .ladder li:nth-child(3n+1) { border-left: none; padding-left: 0; }
+  }
+
+  .readlink {
+    display: inline-block; margin-top: 1.6rem; font-family: "Space Mono";
+    font-size: 0.78rem; letter-spacing: 0.06em; text-transform: uppercase;
+    color: var(--spot); border-bottom: 1px solid currentColor; padding-bottom: 0.2rem;
+  }
+  .readlink:hover { color: var(--ink); }
+
+  .colophon { padding: 4rem 0 6rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; }
+  .colophon .masthead-font { font-weight: 900; font-size: 1.4rem; text-transform: uppercase; }
+  .colophon .meta { font-family: "Space Mono"; font-size: 0.78rem; color: var(--ink-soft); text-align: right; line-height: 1.8; }
+  .colophon .meta a:hover { color: var(--ink); text-decoration: underline; }
+  @media (max-width: 760px) { .colophon .meta { text-align: left; } }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">본문으로 바로가기</a>
+<div class="runhead"><span>KAKIMIND — ISSUE № 01 — FEATURE: YEONHWASA</span></div>
+<a class="backbar" href="https://kakimind.github.io/">← Back to Issue Index</a>
+
+<div class="page" id="main">
+  <section class="opener">
+    <div>
+      <span class="kicker">§09 — Meditation — In Development</span>
+      <h1>Yeonhwasa<span class="ko">연화사</span></h1>
+      <p class="dek">문턱 없는 법당. 새벽이든 한밤이든, 들어가면 늘 열려 있습니다.</p>
+    </div>
+    <div class="byline">BY KAKIMIND<br>SOLO ANDROID STUDIO<br>FEATURED IN ISSUE № 01</div>
+  </section>
+
+  <section class="plate-row">
+    <figure class="plate">
+      <img class="shot" src="../assets/yeonhwasa.png" width="512" height="512" alt="짙은 녹색 바탕 위에 금빛 연꽃 한 송이가 피어 있는 연화사 앱 아이콘" fetchpriority="high">
+      <div class="cap"><span>FIG. 01</span><span>연화사 / 아이콘</span></div>
+    </figure>
+    <div class="lede">
+      <p class="body">절에 가고 싶은 마음은 대개 절에 갈 수 없는 시각에 찾아옵니다. 연화사는 그 시각을 위한 법당입니다. 앱을 열면 3D로 지은 법당 안이고, 바닥을 누르면 그쪽으로 걸어가고, 방석에 앉으면 절을 시작할 수 있습니다.</p>
+      <p class="body">삼배와 108배, 알마다 손끝에 걸리는 염주 108알, 숨을 따라 커졌다 작아지는 원을 보며 하는 명상 3·5·10분. 향을 피우고, 소원 한 줄을 적어 연등을 답니다.</p>
+      <p class="body">회원가입도 로그인도 없습니다. 참배한 날수와 쌓인 횟수는 기기 안에만 남고, 서버는 지금 법당에 들어와 있는 사람들을 서로에게 보여 줄 뿐입니다.</p>
+      <div class="factbox">
+        <dl>
+          <div><dt>Platform</dt><dd>Android</dd></div>
+          <div><dt>Status</dt><dd>In Development</dd></div>
+          <div><dt>Genre</dt><dd>Meditation</dd></div>
+        </dl>
+      </div>
+      <span class="playbadge pending">◷ Google Play 출시 준비 중</span>
+      <p class="badge-note">출시가 확정되면 이곳에 다운로드 링크를 올립니다.</p>
+    </div>
+  </section>
+
+  <section class="pull-section">
+    <div class="label">What's Inside</div>
+    <ul class="feature-list">
+      <li><span class="fnum">01</span><div><h3>절하기 — 삼배와 108배</h3><p>가까운 빈 방석으로 걸어가 불단 쪽을 향해 섭니다. 이마가 바닥에 닿는 순간마다 기기가 짧게 울려 횟수를 대신 세어 줍니다.</p></div></li>
+      <li><span class="fnum">02</span><div><h3>염주 108알</h3><p>알을 하나씩 넘깁니다. 알 하나에 진동 한 번. 눈을 감고 손끝만으로도 어디까지 왔는지 알 수 있습니다.</p></div></li>
+      <li><span class="fnum">03</span><div><h3>명상 3 · 5 · 10분</h3><p>숨에 맞춰 커졌다 작아지는 원과, 들숨과 날숨이 바뀌는 자리에서 울리는 진동. 명상하는 동안에는 화면이 꺼지지 않습니다.</p></div></li>
+      <li><span class="fnum">04</span><div><h3>향과 연등</h3><p>향을 피워 두고, 소원 마흔 자를 적어 연등을 답니다. 연등은 기본이 비공개이고, 공개로 고른 것만 법당의 다른 사람에게 보입니다.</p></div></li>
+      <li><span class="fnum">05</span><div><h3>오늘의 법문</h3><p>하루에 한 장, 짧은 글귀 카드. 마음에 남는 것은 이미지로 만들어 그대로 공유할 수 있습니다.</p></div></li>
+      <li><span class="fnum">06</span><div><h3>시각과 계절이 그대로 들어옵니다</h3><p>법당 안의 빛은 한국 시각을 따라 새벽·낮·저녁·밤으로 바뀌고, 창밖에는 벚꽃·반딧불·단풍·눈이 철 따라 날립니다.</p></div></li>
+      <li><span class="fnum">07</span><div><h3>장면 담기</h3><p>마음에 드는 순간의 법당을 한 장으로 담아 저장하거나 보낼 수 있습니다.</p></div></li>
+    </ul>
+  </section>
+
+  <section class="pull-section">
+    <div class="label">By the Numbers</div>
+    <dl class="figures">
+      <div><dt>염주</dt><dd>108<span>알마다 진동 한 번</span></dd></div>
+      <div><dt>법문</dt><dd>365<span>하루에 한 장</span></dd></div>
+      <div><dt>방석</dt><dd>100<span>열 줄 곱하기 열 자리</span></dd></div>
+      <div><dt>참배 등급</dt><dd>6<span>이레에서 천일까지</span></dd></div>
+    </dl>
+  </section>
+
+  <section class="pull-section">
+    <div class="label">Together — 함께 참배</div>
+    <div class="note-row">
+      <p class="standfirst">혼자 앉아 있어도, 같은 시각에 앉은 사람이 보입니다.</p>
+      <div>
+        <p class="body">법당에 들어오면 문 앞에서 시작해 방석까지 걸어갑니다. 지금 들어와 있는 사람들의 동자승이 각자의 자리에서 절을 하고 염주를 돌립니다. 누군가를 눌러 합장으로 인사할 수 있습니다.</p>
+        <p class="body">공동 예불은 새벽 다섯 시와 저녁 여섯 시. 그 시각에 들어오면 함께 절하는 사람의 수가 화면에 표시됩니다.</p>
+        <p class="body">서버에 닿지 않을 때는 혼자 쓰는 법당으로 자동으로 바뀝니다. 절도 염주도 명상도 인터넷 없이 그대로 됩니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pull-section">
+    <div class="label">Grades — 참배 등급</div>
+    <p class="badge-note" style="margin: -1rem 0 1.6rem;">연속으로 참배한 날수를 따라 장삼 색이 조금씩 밝아집니다. 광고나 결제로는 오르지 않습니다.</p>
+    <ul class="ladder">
+      <li><span class="lname">이레</span><span class="ldays">7일</span></li>
+      <li><span class="lname">삼칠일</span><span class="ldays">21일</span></li>
+      <li><span class="lname">사십구일</span><span class="ldays">49일</span></li>
+      <li><span class="lname">백일</span><span class="ldays">100일</span></li>
+      <li><span class="lname">삼백일</span><span class="ldays">300일</span></li>
+      <li><span class="lname">천일</span><span class="ldays">1000일</span></li>
+    </ul>
+  </section>
+
+  <section class="pull-section">
+    <div class="label">Ads — 광고 정책</div>
+    <div class="note-row">
+      <p class="standfirst">기도와 광고를 엮지 않는 것이 이 앱의 원칙입니다.</p>
+      <div>
+        <ul class="feature-list">
+          <li><span class="fnum">01</span><div><h3>직접 누를 때만</h3><p>보상형 광고 하나만 씁니다. 배너도, 끼어드는 전면 광고도, 앱을 열 때 뜨는 광고도 없습니다.</p></div></li>
+          <li><span class="fnum">02</span><div><h3>참배 중에는 보이지 않습니다</h3><p>절하기·염주·예불·소원 쓰기가 진행되는 동안에는 광고 버튼 자체가 화면에서 사라집니다.</p></div></li>
+          <li><span class="fnum">03</span><div><h3>보상은 꾸미기까지만</h3><p>광고를 보고 받는 것은 연등 색, 가사 색, 방석 무늬 같은 꾸미기뿐입니다. 공덕이나 참배 기록은 광고로 늘지 않습니다.</p></div></li>
+        </ul>
+        <a class="readlink" href="privacy.html">개인정보처리방침 →</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <span class="masthead-font">Kakimind</span>
+    <div class="meta">
+      <a href="privacy.html">개인정보처리방침</a> · <a href="https://kakimind.github.io/">다른 작품 보기</a><br>
+      Contact: <a href="mailto:kakimind@gmail.com">kakimind@gmail.com</a><br>
+      © 2026 kakimind — 연화사
+    </div>
+  </footer>
+</div>
+</body>
+</html>
