@@ -102,9 +102,13 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink-soft);
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.6rem 1.5rem;
     margin-bottom: 1.4rem;
   }
+  .cover .visits { color: var(--ink-faint); }
   .cover h1 {
     font-family: "Big Shoulders Display";
     font-weight: 900;
@@ -395,7 +399,7 @@
 
 <div class="page">
   <section class="cover">
-    <span class="kicker">Issue № 01 — 2026 — Printed on the Web</span>
+    <span class="kicker">Issue № 01 — 2026 — Printed on the Web<span class="visits">오늘 <span id="v-today">—</span> · 이번 달 <span id="v-month">—</span> · 전체 <span id="v-total">—</span></span></span>
     <h1>KAKIMIND</h1>
     <div class="dek">
       <p>본업 끝나고 틈틈이, 주말엔 조금 더. 혼자서 기획부터 디자인, 개발까지 다 해보며 안드로이드 앱과 게임을 만드는 한 사람의 작업실 이야기.</p>
@@ -653,8 +657,7 @@
     <div class="meta">
       Published by kakimind — Seoul<br>
       Contact: <a href="mailto:kakimind@gmail.com">kakimind@gmail.com</a> · <a href="https://github.com/kakimind">GitHub</a><br>
-      © 2026. All rights reserved.<br>
-      Readers — 오늘 <span id="v-today">—</span> · 이번 달 <span id="v-month">—</span> · 전체 <span id="v-total">—</span>
+      © 2026. All rights reserved.
     </div>
   </footer>
 </div>
