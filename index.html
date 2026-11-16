@@ -653,11 +653,13 @@
     <div class="meta">
       Published by kakimind — Seoul<br>
       Contact: <a href="mailto:kakimind@gmail.com">kakimind@gmail.com</a> · <a href="https://github.com/kakimind">GitHub</a><br>
-      © 2026. All rights reserved.
+      © 2026. All rights reserved.<br>
+      Readers — 오늘 <span id="v-today">—</span> · 이번 달 <span id="v-month">—</span> · 전체 <span id="v-total">—</span>
     </div>
   </footer>
 </div>
 
+<script data-goatcounter="https://kakimind.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
 (function () {
   var spreads = Array.prototype.slice.call(document.querySelectorAll('.spread'));
@@ -671,6 +673,22 @@
   } else {
     spreads.forEach(function (s) { s.classList.add('in-view'); });
   }
+})();
+
+(function () {
+  // GoatCounter's public counter endpoint — needs "allow public counts" on in the site settings.
+  var url = 'https://kakimind.goatcounter.com/counter/TOTAL.json';
+  var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+  var now = new Date();
+  var today = now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate());
+  [['v-today', '?start=' + today], ['v-month', '?start=' + today.slice(0, 7) + '-01'], ['v-total', '']]
+    .forEach(function (p) {
+      fetch(url + p[1]).then(function (r) { return r.json(); }).then(function (j) {
+        // The API formats with the site's thousands separator; reformat for ko-KR.
+        document.getElementById(p[0]).textContent =
+          Number(String(j.count).replace(/\D/g, '')).toLocaleString('ko-KR');
+      }).catch(function () {});  // leaves the em dash placeholder
+    });
 })();
 </script>
 </body>
