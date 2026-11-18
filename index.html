@@ -391,9 +391,21 @@
     line-height: 1.8;
   }
   .colophon .meta a:hover { color: var(--ink); text-decoration: underline; }
+
+  .totop {
+    position: fixed; right: 1.6rem; bottom: 1.6rem; z-index: 30;
+    display: inline-block; padding: 0.55rem 0.8rem;
+    border: 1px solid var(--rule); background: var(--paper-raised);
+    font-family: "Space Mono", monospace; font-size: 0.72rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+  .totop:hover { color: var(--ink); border-color: var(--ink); }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 </style>
 </head>
-<body>
+<body id="top">
+
+<a class="totop" href="#top">↑ Top</a>
 
 <div class="runhead"><span>KAKIMIND — SOLO ANDROID STUDIO — ISSUE № 01</span></div>
 
