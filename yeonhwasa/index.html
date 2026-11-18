@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>연화사 — 함께 절하고 명상하는 온라인 사찰</title>
-<meta name="description" content="언제든 들어가 절하고, 향을 피우고, 숨을 고르는 3D 온라인 법당. 삼배와 108배, 명상 3·5·10분, 연등과 오늘의 법문. 같은 시각 들어온 사람들과 함께 참배합니다. Android 출시 준비 중.">
+<meta name="description" content="언제든 들어가 절하고, 향을 피우고, 숨을 고르는 3D 온라인 법당. 삼배와 108배, 명상 3·5·10분, 연등과 오늘의 법문. 같은 시각 들어온 사람들과 함께 참배합니다. Google Play에서 무료로 받을 수 있습니다.">
 <meta property="og:title" content="연화사 — 함께 절하고 명상하는 온라인 사찰">
 <meta property="og:description" content="언제든 들어가 절하고, 향을 피우고, 숨을 고르는 3D 온라인 법당. 계정 없이, 혼자서도 함께도.">
 <meta property="og:type" content="website">
@@ -121,6 +121,15 @@
 
   @media (max-width: 760px) { .plate-row { grid-template-columns: 1fr; } }
 
+  .gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; }
+  .gallery figure { margin: 0; border: 1px solid var(--rule); background: var(--paper-raised); padding: 1rem; }
+  .gallery img { width: 100%; height: auto; display: block; border-radius: 3px; }
+  .gallery .cap {
+    margin-top: 0.8rem; font-family: "Space Mono"; font-size: 0.68rem; color: var(--ink-faint);
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.25rem 0.8rem;
+  }
+  @media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, 1fr); gap: 1rem; } }
+
   .pull-section { padding: 3.5rem 0; border-bottom: 1px solid var(--rule); }
   .pull-section .label { font-family: "Space Mono"; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 1.8rem; }
   .feature-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
@@ -180,7 +189,7 @@
 <div class="page" id="main">
   <section class="opener">
     <div>
-      <span class="kicker">§09 — Meditation — In Development</span>
+      <span class="kicker">§09 — Meditation — Released</span>
       <h1>Yeonhwasa<span class="ko">연화사</span></h1>
       <p class="dek">문턱 없는 법당. 새벽이든 한밤이든, 들어가면 늘 열려 있습니다.</p>
     </div>
@@ -199,12 +208,12 @@
       <div class="factbox">
         <dl>
           <div><dt>Platform</dt><dd>Android</dd></div>
-          <div><dt>Status</dt><dd>In Development</dd></div>
+          <div><dt>Status</dt><dd>Released</dd></div>
           <div><dt>Genre</dt><dd>Meditation</dd></div>
         </dl>
       </div>
-      <span class="playbadge pending">◷ Google Play 출시 준비 중</span>
-      <p class="badge-note">출시가 확정되면 이곳에 다운로드 링크를 올립니다.</p>
+      <a class="playbadge" href="https://play.google.com/store/apps/details?id=com.kakimind.yunhwasa">▶ Google Play에서 받기</a>
+      <p class="badge-note">무료 · 계정 없이 바로 들어갑니다. 보상형 광고는 직접 누를 때만 재생됩니다.</p>
     </div>
   </section>
 
@@ -219,6 +228,32 @@
       <li><span class="fnum">06</span><div><h3>시각과 계절이 그대로 들어옵니다</h3><p>법당 안의 빛은 한국 시각을 따라 새벽·낮·저녁·밤으로 바뀌고, 창밖에는 벚꽃·반딧불·단풍·눈이 철 따라 날립니다.</p></div></li>
       <li><span class="fnum">07</span><div><h3>장면 담기</h3><p>마음에 드는 순간의 법당을 한 장으로 담아 저장하거나 보낼 수 있습니다.</p></div></li>
     </ul>
+  </section>
+
+  <section class="pull-section">
+    <div class="label">Inside the Hall — 실제 화면</div>
+    <div class="gallery">
+      <figure>
+        <img src="shots/hall.webp" width="720" height="1280" loading="lazy" alt="정적당 법당 안. 단청 입힌 우물천장 아래 부처와 보살이 그려진 탱화가 걸려 있고, 그 앞 불단에 촛불 두 자루가 켜져 있다. 바닥에는 방석이 열 줄로 놓였고 동자승 둘이 서 있다. 아래에 절하기·향 피우기·연등 달기·명상·더보기 버튼이 있다.">
+        <figcaption class="cap"><span>FIG. 02</span><span>정적당 — 들어선 자리</span></figcaption>
+      </figure>
+      <figure>
+        <img src="shots/bowing.webp" width="720" height="1280" loading="lazy" alt="절하기 화면. 방석 앞에 선 동자승 뒤로 법당이 보이고 화면 가운데 아래에 3 / 108 이라는 큰 숫자와 '멈추기' 버튼이 있다.">
+        <figcaption class="cap"><span>FIG. 03</span><span>108배 — 횟수는 앱이 센다</span></figcaption>
+      </figure>
+      <figure>
+        <img src="shots/together.webp" width="720" height="1280" loading="lazy" alt="같은 법당 안에서 동자승 넷이 저마다 다른 자리에 있다. 한 동자승은 방석에 엎드려 절하는 중이고 나머지는 불단 쪽을 향해 서 있다. 상단에 접속자 수 1이 표시된다.">
+        <figcaption class="cap"><span>FIG. 04</span><span>함께 참배 — 같은 시각의 사람들</span></figcaption>
+      </figure>
+      <figure>
+        <img src="shots/dharma.webp" width="720" height="1280" loading="lazy" alt="오늘의 법문 시트가 법당 위로 올라와 있다. 테두리를 두른 카드 안에 '향 연기는 곧게 오르다 흩어진다. 삶도 그렇다.'와 '연화사'가 적혀 있고, 아래에 '공유하기' 버튼과 '법문은 한국 날짜로 하루에 한 장 바뀝니다.'라는 안내가 있다.">
+        <figcaption class="cap"><span>FIG. 05</span><span>오늘의 법문 — 하루 한 장</span></figcaption>
+      </figure>
+      <figure>
+        <img src="shots/meditation.webp" width="720" height="1280" loading="lazy" alt="명상 화면. 어두운 배경 한가운데 촛불 하나가 은은하게 빛나고 그 아래 '내쉬기'와 남은 시간 02:56, 맨 아래에 '멈추기' 버튼이 있다.">
+        <figcaption class="cap"><span>FIG. 06</span><span>명상 — 숨을 따라가는 불빛</span></figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="pull-section">
